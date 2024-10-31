@@ -101,6 +101,9 @@ x-infrahub-config: &infrahub_config
   INFRAHUB_STORAGE_LOCAL_PATH: ${INFRAHUB_STORAGE_LOCAL_PATH:-/opt/infrahub/storage}
   INFRAHUB_STORAGE_QUERYSTRING_AUTH: ${INFRAHUB_STORAGE_QUERYSTRING_AUTH:-false}
   INFRAHUB_STORAGE_USE_SSL: ${INFRAHUB_STORAGE_USE_SSL:-true}
+  INFRAHUB_TASKMANAGER_DB_USER: ${INFRAHUB_TASKMANAGER_DB_USER:-postgres}
+  INFRAHUB_TASKMANAGER_DB_PASSWORD: ${INFRAHUB_TASKMANAGER_DB_PASSWORD:-postgres}
+  INFRAHUB_TASKMANAGER_DB_DATABASE: ${INFRAHUB_TASKMANAGER_DB_DATABASE:-prefect}
   INFRAHUB_TELEMETRY_ENDPOINT: ${INFRAHUB_TELEMETRY_ENDPOINT:-https://telemetry.opsmill.cloud/infrahub}
   INFRAHUB_TELEMETRY_INTERVAL:
   INFRAHUB_TELEMETRY_OPTOUT: ${INFRAHUB_TELEMETRY_OPTOUT:-false}
@@ -171,7 +174,7 @@ services:
     depends_on:
       - task-manager-db
     environment:
-      PREFECT_API_DATABASE_CONNECTION_URL: postgresql+asyncpg://postgres:postgres@task-manager-db:5432/prefect
+      PREFECT_API_DATABASE_CONNECTION_URL: postgresql+asyncpg://${INFRAHUB_TASKMANAGER_DB_USER:-postgres}:${INFRAHUB_TASKMANAGER_DB_PASSWORD:-postgres}@task-manager-db:5432/${INFRAHUB_TASKMANAGER_DB_DATABASE:-prefect}
     healthcheck:
       test: /usr/local/bin/httpx http://localhost:4200/api/health || exit 1
       interval: 5s
@@ -180,12 +183,12 @@ services:
       start_period: 10s
 
   task-manager-db:
-    image: postgres:16-alpine
+    image: "${POSTGRES_DOCKER_IMAGE:-postgres:16-alpine}"
     restart: unless-stopped
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=prefect
+      - POSTGRES_USER=${INFRAHUB_TASKMANAGER_DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${INFRAHUB_TASKMANAGER_DB_PASSWORD:-postgres}
+      - POSTGRES_DB=${INFRAHUB_TASKMANAGER_DB_DATABASE:-prefect}
     volumes:
       - workflow_db:/var/lib/postgresql/data
     healthcheck:

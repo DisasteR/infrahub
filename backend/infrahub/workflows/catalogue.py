@@ -62,6 +62,13 @@ TRIGGER_ARTIFACT_DEFINITION_GENERATE = WorkflowDefinition(
     function="generate_artifact_definition",
 )
 
+TRIGGER_GENERATOR_DEFINITION_RUN = WorkflowDefinition(
+    name="generator_definition_run",
+    type=WorkflowType.INTERNAL,
+    module="infrahub.generators.tasks",
+    function="run_generator_definition",
+)
+
 IPAM_RECONCILIATION = WorkflowDefinition(
     name="ipam_reconciliation",
     type=WorkflowType.INTERNAL,
@@ -86,7 +93,7 @@ REQUEST_ARTIFACT_GENERATE = WorkflowDefinition(
 )
 
 REQUEST_ARTIFACT_DEFINITION_GENERATE = WorkflowDefinition(
-    name="artifact-definition-generate",
+    name="request_artifact_definitions_generate",
     type=WorkflowType.INTERNAL,
     module="infrahub.git.tasks",
     function="generate_request_artifact_definition",
@@ -122,6 +129,23 @@ GIT_REPOSITORIES_CREATE_BRANCH = WorkflowDefinition(
     branch_support=BranchSupportType.AWARE,
     tags=[WorkflowTag.DATABASE_CHANGE],
 )
+
+GIT_REPOSITORIES_PULL_READ_ONLY = WorkflowDefinition(
+    name="git-repository-pull-read-only",
+    type=WorkflowType.INTERNAL,
+    module="infrahub.git.tasks",
+    function="pull_read_only",
+)
+
+GIT_REPOSITORIES_MERGE = WorkflowDefinition(
+    name="git-repository-merge",
+    type=WorkflowType.INTERNAL,
+    module="infrahub.git.tasks",
+    function="merge_git_repository",
+    branch_support=BranchSupportType.AWARE,
+    tags=[WorkflowTag.DATABASE_CHANGE],
+)
+
 BRANCH_REBASE = WorkflowDefinition(
     name="branch-rebase",
     type=WorkflowType.INTERNAL,
@@ -140,6 +164,21 @@ BRANCH_MERGE = WorkflowDefinition(
     tags=[WorkflowTag.DATABASE_CHANGE],
 )
 
+BRANCH_DELETE = WorkflowDefinition(
+    name="branch-delete",
+    type=WorkflowType.INTERNAL,
+    module="infrahub.core.branch.tasks",
+    function="delete_branch",
+    branch_support=BranchSupportType.AWARE,
+)
+
+BRANCH_CANCEL_PROPOSED_CHANGES = WorkflowDefinition(
+    name="proposed-changes-cancel-branch",
+    type=WorkflowType.INTERNAL,
+    module="infrahub.proposed_change.tasks",
+    function="cancel_proposed_changes_branch",
+)
+
 worker_pools = [INFRAHUB_WORKER_POOL]
 
 workflows = [
@@ -156,8 +195,13 @@ workflows = [
     REQUEST_ARTIFACT_GENERATE,
     BRANCH_REBASE,
     BRANCH_MERGE,
+    BRANCH_DELETE,
     REQUEST_ARTIFACT_DEFINITION_GENERATE,
     REQUEST_GENERATOR_RUN,
     REQUEST_DIFF_UPDATE,
     REQUEST_DIFF_REFRESH,
+    GIT_REPOSITORIES_PULL_READ_ONLY,
+    GIT_REPOSITORIES_MERGE,
+    TRIGGER_GENERATOR_DEFINITION_RUN,
+    BRANCH_CANCEL_PROPOSED_CHANGES,
 ]

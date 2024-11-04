@@ -392,25 +392,6 @@ For more detailed explanations on how to use these events within Infrahub, see t
 | **repository_location** | The location of repository | string | None |
 <!-- vale on -->
 <!-- vale off -->
-#### Event git.repository.merge
-<!-- vale on -->
-
-**Description**: Merge one branch into another.
-
-**Priority**: 3
-
-<!-- vale off -->
-| Key | Description | Type | Default Value |
-|-----|-------------|------|---------------|
-| **meta** | Meta properties for the message | N/A | None |
-| **repository_id** | The unique ID of the Repository | string | None |
-| **repository_name** | The name of the repository | string | None |
-| **internal_status** | Administrative status of the repository | string | None |
-| **source_branch** | The source branch | string | None |
-| **destination_branch** | The source branch | string | None |
-| **default_branch** | The default branch in Git | string | None |
-<!-- vale on -->
-<!-- vale off -->
 #### Event git.repository.add_read_only
 <!-- vale on -->
 
@@ -446,25 +427,6 @@ For more detailed explanations on how to use these events within Infrahub, see t
 | **repository_name** | The name of the repository | string | None |
 | **repository_kind** | The type of repository | string | None |
 | **commit** | Specific commit to pull | string | None |
-| **infrahub_branch_name** | Infrahub branch on which to sync the remote repository | string | None |
-<!-- vale on -->
-<!-- vale off -->
-#### Event git.repository.pull_read_only
-<!-- vale on -->
-
-**Description**: Update a read-only repository to the latest commit for its ref
-
-**Priority**: 3
-
-<!-- vale off -->
-| Key | Description | Type | Default Value |
-|-----|-------------|------|---------------|
-| **meta** | Meta properties for the message | N/A | None |
-| **location** | The external URL of the repository | string | None |
-| **repository_id** | The unique ID of the Repository | string | None |
-| **repository_name** | The name of the repository | string | None |
-| **ref** | Ref to track on the external repository | N/A | None |
-| **commit** | Specific commit to pull | N/A | None |
 | **infrahub_branch_name** | Infrahub branch on which to sync the remote repository | string | None |
 <!-- vale on -->
 
@@ -653,20 +615,6 @@ For more detailed explanations on how to use these events within Infrahub, see t
 ### Request Proposed Change
 <!-- vale on -->
 
-<!-- vale off -->
-#### Event request.proposed_change.cancel
-<!-- vale on -->
-
-**Description**: Cancel the proposed change
-
-**Priority**: 3
-
-<!-- vale off -->
-| Key | Description | Type | Default Value |
-|-----|-------------|------|---------------|
-| **meta** | Meta properties for the message | N/A | None |
-| **proposed_change** | The unique ID of the Proposed Change | string | None |
-<!-- vale on -->
 <!-- vale off -->
 #### Event request.proposed_change.data_integrity
 <!-- vale on -->
@@ -857,44 +805,6 @@ For more detailed explanations on how to use these events within Infrahub, see t
 | **message** | The message to send | string | None |
 <!-- vale on -->
 
-
-<!-- vale off -->
-### Trigger Generator Definition
-<!-- vale on -->
-
-<!-- vale off -->
-#### Event trigger.generator_definition.run
-<!-- vale on -->
-
-**Description**: Triggers all Generators to run on the desired branch.
-
-**Priority**: 3
-
-<!-- vale off -->
-| Key | Description | Type | Default Value |
-|-----|-------------|------|---------------|
-| **meta** | Meta properties for the message | N/A | None |
-| **branch** | The branch to run the Generators in | string | None |
-<!-- vale on -->
-
-<!-- vale off -->
-### Trigger Proposed Change
-<!-- vale on -->
-
-<!-- vale off -->
-#### Event trigger.proposed_change.cancel
-<!-- vale on -->
-
-**Description**: Triggers request to cancel any open or closed proposed changes for a given branch
-
-**Priority**: 3
-
-<!-- vale off -->
-| Key | Description | Type | Default Value |
-|-----|-------------|------|---------------|
-| **meta** | Meta properties for the message | N/A | None |
-| **branch** | The impacted branch | string | None |
-<!-- vale on -->
 
 <!-- vale off -->
 ### Trigger Webhook
@@ -1316,26 +1226,6 @@ For more detailed explanations on how to use these events within Infrahub, see t
 | **repository_location** | The location of repository | string | None |
 <!-- vale on -->
 <!-- vale off -->
-#### Event git.repository.merge
-<!-- vale on -->
-
-**Description**: Merge one branch into another.
-
-**Priority**: 3
-
-
-<!-- vale off -->
-| Key | Description | Type | Default Value |
-|-----|-------------|------|---------------|
-| **meta** | Meta properties for the message | N/A | None |
-| **repository_id** | The unique ID of the Repository | string | None |
-| **repository_name** | The name of the repository | string | None |
-| **internal_status** | Administrative status of the repository | string | None |
-| **source_branch** | The source branch | string | None |
-| **destination_branch** | The source branch | string | None |
-| **default_branch** | The default branch in Git | string | None |
-<!-- vale on -->
-<!-- vale off -->
 #### Event git.repository.add_read_only
 <!-- vale on -->
 
@@ -1373,26 +1263,6 @@ For more detailed explanations on how to use these events within Infrahub, see t
 | **repository_name** | The name of the repository | string | None |
 | **repository_kind** | The type of repository | string | None |
 | **commit** | Specific commit to pull | string | None |
-| **infrahub_branch_name** | Infrahub branch on which to sync the remote repository | string | None |
-<!-- vale on -->
-<!-- vale off -->
-#### Event git.repository.pull_read_only
-<!-- vale on -->
-
-**Description**: Update a read-only repository to the latest commit for its ref
-
-**Priority**: 3
-
-
-<!-- vale off -->
-| Key | Description | Type | Default Value |
-|-----|-------------|------|---------------|
-| **meta** | Meta properties for the message | N/A | None |
-| **location** | The external URL of the repository | string | None |
-| **repository_id** | The unique ID of the Repository | string | None |
-| **repository_name** | The name of the repository | string | None |
-| **ref** | Ref to track on the external repository | N/A | None |
-| **commit** | Specific commit to pull | N/A | None |
 | **infrahub_branch_name** | Infrahub branch on which to sync the remote repository | string | None |
 <!-- vale on -->
 
@@ -1590,21 +1460,6 @@ For more detailed explanations on how to use these events within Infrahub, see t
 ### Request Proposed Change
 <!-- vale on -->
 
-<!-- vale off -->
-#### Event request.proposed_change.cancel
-<!-- vale on -->
-
-**Description**: Cancel the proposed change
-
-**Priority**: 3
-
-
-<!-- vale off -->
-| Key | Description | Type | Default Value |
-|-----|-------------|------|---------------|
-| **meta** | Meta properties for the message | N/A | None |
-| **proposed_change** | The unique ID of the Proposed Change | string | None |
-<!-- vale on -->
 <!-- vale off -->
 #### Event request.proposed_change.data_integrity
 <!-- vale on -->
@@ -1805,46 +1660,6 @@ For more detailed explanations on how to use these events within Infrahub, see t
 | **message** | The message to send | string | None |
 <!-- vale on -->
 
-
-<!-- vale off -->
-### Trigger Generator Definition
-<!-- vale on -->
-
-<!-- vale off -->
-#### Event trigger.generator_definition.run
-<!-- vale on -->
-
-**Description**: Triggers all Generators to run on the desired branch.
-
-**Priority**: 3
-
-
-<!-- vale off -->
-| Key | Description | Type | Default Value |
-|-----|-------------|------|---------------|
-| **meta** | Meta properties for the message | N/A | None |
-| **branch** | The branch to run the Generators in | string | None |
-<!-- vale on -->
-
-<!-- vale off -->
-### Trigger Proposed Change
-<!-- vale on -->
-
-<!-- vale off -->
-#### Event trigger.proposed_change.cancel
-<!-- vale on -->
-
-**Description**: Triggers request to cancel any open or closed proposed changes for a given branch
-
-**Priority**: 3
-
-
-<!-- vale off -->
-| Key | Description | Type | Default Value |
-|-----|-------------|------|---------------|
-| **meta** | Meta properties for the message | N/A | None |
-| **branch** | The impacted branch | string | None |
-<!-- vale on -->
 
 <!-- vale off -->
 ### Trigger Webhook
